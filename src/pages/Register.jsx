@@ -18,8 +18,15 @@ export default function Cadastro() {
       setError('');
       setTimeout(() => navigate('/login'), 1500);
     } catch (err) {
-      setError(err.response?.data?.error || 'Erro no cadastro');
-      setMessage('');
+
+        if (err.response?.status === 400) {
+          setError(err.response.data.error);
+        } else {
+          setError('Erro inesperado, tente novamente');
+        }
+        setMessage('');
+
+
     }
   }
 
@@ -27,7 +34,7 @@ export default function Cadastro() {
     <div className="min-h-screen flex items-center justify-center bg-gray-900">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-3xl font-bold text-purple-400 mb-6 text-center">Cadastro</h2>
-        
+
         <form onSubmit={handleCadastro} className="space-y-4">
           <input
             type="text"
