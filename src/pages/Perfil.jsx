@@ -61,11 +61,11 @@ export default function Perfil() {
 
   const dataArtistas = {
     labels: Object.keys(artistas),
-    datasets: Object.entries(artistas).map(([artista, qtd], i) => ({
-      label: artista,
-      data: [qtd],
-      backgroundColor: coresArtistas[i % coresArtistas.length]
-    }))
+    datasets: [{
+      label: 'Quantidade por artista',
+      data: Object.values(artistas),
+      backgroundColor: coresArtistas
+    }]
   };
 
   // Distribuição de valor por artista
@@ -78,11 +78,11 @@ export default function Perfil() {
 
   const dataValores = {
     labels: Object.keys(valores),
-    datasets: Object.entries(valores).map(([artista, valor], i) => ({
-      label: artista,
-      data: [valor],
-      backgroundColor: coresValores[i % coresValores.length]
-    }))
+    datasets: [{
+      label: 'Valor por artista',
+      data: Object.values(valores),
+      backgroundColor: coresValores
+    }]
   };
 
   // Artista mais frequente
